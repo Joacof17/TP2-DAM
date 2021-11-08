@@ -24,12 +24,30 @@
             app:title="Crear Recordatorio" />
 
 
+
+
         <EditText
             android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="TextView"
-            android:editable="true"/>
+            android:layout_height="wrap_content"
+            android:text="@string/textEscriba"
+            />
+
+        <Button
+            android:id="@+id/Seleccionar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+
+            android:minWidth="48dp"
+            android:text="@string/buttonSeleccionar" />
+
+
+        <TextView
+            android:id="@+id/fechaSeleccionada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/textFecha"
+            />
 
         <Button
             android:id="@+id/button"
@@ -38,5 +56,6 @@
 
             android:minWidth="48dp"
             android:text="@string/buttonGuardar" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
