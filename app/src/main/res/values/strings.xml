@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">MyApp2</string>
-    <string name="label">Es lo que dice</string>
-    <string name="buttonGuardar">Guardar</string>
+    <string name="buttonGuardar">Guardar Datos</string>
     <string name="textEscriba">Introduzca el texto a recordar...</string>
     <string name="textFecha">La fecha es...</string>
-    <string name="buttonSeleccionar">Seleccionar Fecha</string>
+    <string name="textHora">La hora es...</string>
+    <string name="buttonSeleccionarFecha">Seleccionar Fecha</string>
+    <string name="buttonSeleccionarHora">Seleccionar Hora</string>
 </resources>

@@ -12,8 +12,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public Button ir;
-    public EditText et;
-    public TextView tv;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
