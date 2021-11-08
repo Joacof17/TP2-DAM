@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MyApp2</string>
+    <string name="label">Es lo que dice</string>
+    <string name="buttonGuardar">Guardar</string>
+</resources>
