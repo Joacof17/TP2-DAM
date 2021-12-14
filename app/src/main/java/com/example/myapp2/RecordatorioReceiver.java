@@ -14,9 +14,9 @@ public class RecordatorioReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(final Context context, final Intent intent) {
-        // Solo nos interesa la accion que hemos definido nosotros
+
         if(intent.getAction().equals(RECORDATORIO)){
-            // Toast de ejemplo, acá debería armarse la notificación
+
             Toast.makeText(context, "LLEGUE! " + intent.getStringExtra(TEXTO), Toast.LENGTH_LONG).show();
         }
     }

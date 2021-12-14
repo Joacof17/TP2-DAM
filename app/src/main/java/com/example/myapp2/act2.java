@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.TimeZone;
 
 public class act2 extends AppCompatActivity {
@@ -33,11 +34,14 @@ public class act2 extends AppCompatActivity {
     public Button mGuardarDatos;
     public TextView mTextViewFechaSeleccionada;
     public TextView mTextViewHoraSeleccionada;
+    public TextView mTextViewNombreRecordatorio;
     private int hora;
     private int min;
     private int seg;
     private Date fecha;
-
+    private RecordatorioModel modeloRec;
+    private RecordatorioRepository repositorioRec;
+    private RecordatorioPreferencesDataSource dataSourceRec;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,11 +51,15 @@ public class act2 extends AppCompatActivity {
         mButtonSeleccionarHoraBtn = findViewById(R.id.SeleccionarHora);
         mTextViewFechaSeleccionada = findViewById(R.id.fechaSeleccionada);
         mTextViewHoraSeleccionada = findViewById(R.id.horaaSeleccionada);
+        mTextViewNombreRecordatorio = findViewById(R.id.textView3);
         mGuardarDatos = findViewById(R.id.buttonGuardar);
 
         MaterialDatePicker.Builder builder = MaterialDatePicker.Builder.datePicker();
         builder.setTitleText("Selecciona una fecha");
         final MaterialDatePicker<Long> materialDatePicker = builder.build();
+        dataSourceRec = new RecordatorioPreferencesDataSource();
+        dataSourceRec.RecordatorioDataSource(this.getApplicationContext());
+        repositorioRec = new RecordatorioRepository(dataSourceRec);
 
         mButtonSeleccionarFechaBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,8 +122,24 @@ public class act2 extends AppCompatActivity {
                 PendingIntent pendingIntentConActionParaMiBroadcastReceiver = PendingIntent.getBroadcast(act2.this, 1, intent, 0);
                 alarm.set(AlarmManager.RTC_WAKEUP, tiempoEnMillis, pendingIntentConActionParaMiBroadcastReceiver);
 
-                Toast msj = Toast.makeText(getApplicationContext(), "Funca", Toast.LENGTH_SHORT);
-                msj.show();
+                //Creo Recordatorio
+
+                modeloRec = new RecordatorioModel(mTextViewNombreRecordatorio.getText().toString(),fecha);
+                dataSourceRec.guardarRecordatorio(modeloRec, new RecordatorioDataSource.GuardarRecordatorioCallback() {
+                    @Override
+                    public void resultado(boolean exito) {
+                        System.out.println(exito);
+                        if(exito){
+                            Toast msj = Toast.makeText(getApplicationContext(), mTextViewNombreRecordatorio.getText().toString()+" creado con éxito!", Toast.LENGTH_SHORT);
+                            msj.show();
+                        }
+                        else{
+                            Toast msj = Toast.makeText(getApplicationContext(),"Error al crear!", Toast.LENGTH_SHORT);
+                            msj.show();
+                        }
+                    }
+                });
+
             }
         });
 
