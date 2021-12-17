@@ -5,7 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ListadoRecordatorios">
-
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:openDrawer="start">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -23,20 +27,31 @@
                 android:layout_height="wrap_content"
                 android:background="@color/teal_200"
                 android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/textViewTitulo"
+                <androidx.coordinatorlayout.widget.CoordinatorLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:layout_marginTop="8sp"
-                    android:layout_marginBottom="8sp"
-                    android:text="Recordatorios"
-                    android:textColor="@color/black"
-                    android:textSize="40sp"
-                    android:visibility="visible" />
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true">
+
+                    <com.google.android.material.appbar.AppBarLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/Widget.MaterialComponents.AppBarLayout.PrimarySurface"
+                        android:fitsSystemWindows="true">
+
+                        <com.google.android.material.appbar.MaterialToolbar
+                            android:id="@+id/topAppBar"
+                            style="@style/Widget.MaterialComponents.Toolbar.PrimarySurface"
+                            android:layout_width="match_parent"
+                            android:layout_height="?attr/actionBarSize"
+                            android:background="@android:color/transparent"
+                            android:elevation="0dp"
+                            app:navigationIcon="@android:drawable/ic_menu_sort_by_size"
+                            app:title="Recordatorios" />
+
+                    </com.google.android.material.appbar.AppBarLayout>
+                </androidx.coordinatorlayout.widget.CoordinatorLayout>
             </LinearLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/listRecyclerView"
                 android:layout_width="match_parent"
@@ -72,4 +87,15 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigationView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            app:menu="@menu/navigation_drawer"
+            app:headerLayout="@layout/header_navigation_drawer" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
