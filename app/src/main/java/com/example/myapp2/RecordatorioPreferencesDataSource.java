@@ -21,6 +21,7 @@ public class RecordatorioPreferencesDataSource implements RecordatorioDataSource
         SharedPreferences.Editor editor = sharedPreferences.edit();
         long fechaEnMillis = recordatorio.getFecha().getTime();
         editor.putLong(recordatorio.getTexto(),fechaEnMillis);
+
         editor.apply();
         callback.resultado(editor.commit());
     }
@@ -30,10 +31,11 @@ public class RecordatorioPreferencesDataSource implements RecordatorioDataSource
         Map<String,?> mapaRecordatorios = sharedPreferences.getAll();
         List<RecordatorioModel> listaRec = new ArrayList<RecordatorioModel>();
         for(Map.Entry<String,?> entrada : mapaRecordatorios.entrySet()){
+            if(!entrada.getKey().equals("Notificaciones")){
                 Date fechaRec = new Date(Long.parseLong(entrada.getValue().toString()));
                 RecordatorioModel recordatorio = new RecordatorioModel(entrada.getKey(), fechaRec);
                 listaRec.add(recordatorio);
-                System.out.println(recordatorio.getTexto());
+                System.out.println(recordatorio.getTexto());}
         }
 
         callback.resultado(true,listaRec);

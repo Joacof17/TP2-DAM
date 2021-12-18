@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/botonDrawerRecordatorios"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="Recordatorios"
+            android:checked="true" />
+        <item
+            android:id="@+id/botonDrawerPreferencias"
+            android:icon="@android:drawable/ic_menu_preferences"
+            android:title="Preferencias" />
+    </group>
+</menu>

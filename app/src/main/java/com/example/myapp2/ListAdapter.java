@@ -8,6 +8,10 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
@@ -33,7 +37,11 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(final ListAdapter.ViewHolder holder, final int position){
-        holder.bindData(mData.get(position));
+        try {
+            holder.bindData(mData.get(position));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     public void setItems(List<RecordatorioModel> items){
@@ -49,9 +57,12 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             fecha = itemView.findViewById(R.id.textViewFecha);
         }
 
-        void bindData(final RecordatorioModel item){
+        void bindData(final RecordatorioModel item) throws ParseException {
             recordatorio.setText(item.getTexto());
-            fecha.setText(item.getFecha().toString());
+            Date fechaItem = item.getFecha();
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
+            String fechaFormateada = dateFormat.format(fechaItem);
+            fecha.setText(fechaFormateada);
         }
     }
 }

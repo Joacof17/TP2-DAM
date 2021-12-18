@@ -53,11 +53,15 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 android:id="@+id/listRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginLeft="8sp"
-                android:layout_marginTop="8sp" />
+                android:layout_marginTop="8sp"
+                tools:listitem="@layout/list_element"
+                />
         </LinearLayout>
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
@@ -74,15 +78,15 @@
             android:layout_height="match_parent">
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floating_action_button"
+                android:id="@+id/botonAgregarRecordatorio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|right"
                 android:layout_margin="16dp"
-                android:alpha="?android:attr/secondaryContentAlpha"
                 android:backgroundTint="@color/teal_200"
                 android:src="@android:drawable/ic_input_add"
-                app:backgroundTint="#00BCD4" />
+                app:backgroundTint="#00BCD4"
+                android:contentDescription="Content Desc" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -93,6 +97,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
+            android:layout_marginTop="112dp"
             app:menu="@menu/navigation_drawer"
             app:headerLayout="@layout/header_navigation_drawer" />
 
